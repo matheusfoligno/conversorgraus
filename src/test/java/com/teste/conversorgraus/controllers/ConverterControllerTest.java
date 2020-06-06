@@ -1,6 +1,5 @@
 package com.teste.conversorgraus.controllers;
 
-import org.hamcrest.core.Is;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.teste.conversorgraus.repositories.HistoricRepository;
 import com.teste.conversorgraus.services.ConverterService;
 import com.teste.conversorgraus.services.HistoricService;
 
@@ -21,9 +19,6 @@ import com.teste.conversorgraus.services.HistoricService;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ConverterControllerTest {
-
-	@MockBean
-	private HistoricRepository historicRepository;
 
 	@MockBean
 	ConverterService converterService;
@@ -37,7 +32,7 @@ public class ConverterControllerTest {
 	@Test
 	public void toConverterValidTest() throws Exception {
 		String convertValues = "{\"valueToConvert\": \"100\", \"convertedTo\" : \"celsius\"}";
-		mockMvc.perform(MockMvcRequestBuilders.post("/api/toConverter")
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/converter")
 				.content(convertValues)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk());
