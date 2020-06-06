@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,13 @@ import com.teste.conversorgraus.models.ConvertValues;
 import com.teste.conversorgraus.services.ConverterService;
 import com.teste.conversorgraus.services.HistoricService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/api/converter")
+@Api(value = "API REST converção de graus")
+@CrossOrigin(origins="*")
 public class ConverterController {
 	
 	@Autowired
@@ -26,6 +32,7 @@ public class ConverterController {
 	private HistoricService historicService;
 
 	@PostMapping(consumes = "application/json", produces = "application/json")
+	@ApiOperation(value = "Retorna o valor convertido")
 	public ResponseEntity<HashMap<String, String>> toConverter(@RequestBody @Valid ConvertValues convertValues) {
 
 			Float convertedValue = converterService.convertTemperature(convertValues);
