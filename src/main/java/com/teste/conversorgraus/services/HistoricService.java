@@ -12,27 +12,23 @@ import com.teste.conversorgraus.repositories.HistoricRepository;
 
 @Service
 public class HistoricService {
-	
+
 	@Autowired
 	HistoricRepository historicRepository;
-	
-	public void saveHistoric(ConvertValues convertValues, String convertedValue) {
+
+	public void saveHistoric(ConvertValues convertValues, Float convertedValue) {
 		Historic historic = fillHistoric(convertValues, convertedValue);
-		
+
 		historicRepository.save(historic);
 	}
-	
-	public Historic fillHistoric(ConvertValues convertValues, String convertedValue) {
-		Historic historic = new Historic();
-		
-		historic.setValueToConvert(convertValues.getValueToConvert());
-		historic.setConvertedTo(convertValues.getConvertedTo());
-		historic.setConvertedValue(convertedValue);
-		historic.setDate(new Date());
-		
+
+	public Historic fillHistoric(ConvertValues convertValues, Float convertedValue) {
+		Historic historic = new Historic(new Date(), convertValues.getConvertedTo(), convertValues.getValueToConvert(),
+				convertedValue);
+
 		return historic;
 	}
-	
+
 	public List<Historic> findAll() {
 		return historicRepository.findAll();
 	}

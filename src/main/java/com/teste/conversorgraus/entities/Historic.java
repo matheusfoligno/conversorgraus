@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.teste.conversorgraus.enums.MeasureType;
 
@@ -26,17 +27,32 @@ public class Historic implements Serializable {
 	private Long id;
 
 	@Column(name = "date")
+	@NotNull(message = "{date.not.null}")
 	private Date date;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "convertedto")
+	@NotNull(message = "{convertedTo.not.null}")
 	private MeasureType convertedTo;
 
 	@Column(name = "valuetoconvert")
+	@NotNull(message = "{valueToConvert.not.null}")
 	private Float valueToConvert;
 
 	@Column(name = "convertedvalue")
-	private String convertedValue;
+	@NotNull(message = "{convertedValue.not.null}")
+	private Float convertedValue;
+	
+	public Historic() {
+	}
+
+	public Historic(Date date, MeasureType convertedTo, Float valueToConvert, Float convertedValue) {
+		super();
+		this.date = date;
+		this.convertedTo = convertedTo;
+		this.valueToConvert = valueToConvert;
+		this.convertedValue = convertedValue;
+	}
 
 	public Long getId() {
 		return id;
@@ -70,11 +86,11 @@ public class Historic implements Serializable {
 		this.valueToConvert = valueToConvert;
 	}
 
-	public String getConvertedValue() {
+	public Float getConvertedValue() {
 		return convertedValue;
 	}
 
-	public void setConvertedValue(String convertedValue) {
+	public void setConvertedValue(Float convertedValue) {
 		this.convertedValue = convertedValue;
 	}
 

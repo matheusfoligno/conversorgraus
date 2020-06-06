@@ -6,16 +6,13 @@ import com.teste.conversorgraus.models.ConvertValues;
 
 @Service
 public class ConverterService {
-	
-	public String convertTemperature(ConvertValues convertValues) {
-		Float value = null;
-		switch(convertValues.getConvertedTo().getName()) {
+
+	public Float convertTemperature(ConvertValues convertValues) {
+		switch (convertValues.getConvertedTo().getName()) {
 			case "Celsius":
-				value = ((convertValues.getValueToConvert() - 32)*5)/9;
-				return value + " °C";
+				return ((convertValues.getValueToConvert() - 32) * 5) / 9;
 			default:
-				value = (convertValues.getValueToConvert() * 9/5) + 32;
-				return value + " °F";
+				return (convertValues.getValueToConvert() * 9 / 5) + 32;
 		}
 	}
 

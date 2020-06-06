@@ -14,6 +14,9 @@ public class ConvertValues {
 	@NotNull(message = "{convertedTo.not.null}")
 	@Enumerated(EnumType.STRING)
 	private MeasureType convertedTo;
+	
+	public ConvertValues() {
+	}
 
 	public Float getValueToConvert() {
 		return valueToConvert;

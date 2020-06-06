@@ -20,22 +20,22 @@ import com.teste.conversorgraus.services.HistoricService;
 public class ConverterController {
 	
 	@Autowired
-	ConverterService converterService;
+	private ConverterService converterService;
 	
 	@Autowired
-	HistoricService historicService;
+	private HistoricService historicService;
 
-	@PostMapping()
+	@PostMapping(consumes = "application/json", produces = "application/json")
 	public ResponseEntity<HashMap<String, String>> toConverter(@RequestBody @Valid ConvertValues convertValues) {
 
-			String convertedValue = converterService.convertTemperature(convertValues);
+			Float convertedValue = converterService.convertTemperature(convertValues);
 			
 			historicService.saveHistoric(convertValues, convertedValue);
 			
 			HashMap<String, String> map = new HashMap<>();
-			map.put("convertedValue", convertedValue);
+			map.put("convertedValue", convertedValue.toString());
 
-			return ResponseEntity.ok(map);
+			return ResponseEntity.ok().body(map);
 
 	}
 
