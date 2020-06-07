@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -21,6 +22,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		errorDetail.setTimeStamp(new Date().getTime());
 		errorDetail.setStatus(HttpStatus.BAD_REQUEST.value());
 		errorDetail.setTitle("Requisição possui campos inválidos.");
+		errorDetail.setDetail(ex.getMessage());
+		errorDetail.setDeveloperMessage(ex.getClass().getName());
+
+		return new ResponseEntity<>(errorDetail, null, HttpStatus.BAD_REQUEST);
+	}
+	
+	@Override
+	protected ResponseEntity<Object> handleHttpMessageNotReadable(
+			HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+		ErrorDetail errorDetail = new ErrorDetail();
+		errorDetail.setTimeStamp(new Date().getTime());
+		errorDetail.setStatus(HttpStatus.BAD_REQUEST.value());
+		errorDetail.setTitle("Corpo da solicitação inválido.");
 		errorDetail.setDetail(ex.getMessage());
 		errorDetail.setDeveloperMessage(ex.getClass().getName());
 
