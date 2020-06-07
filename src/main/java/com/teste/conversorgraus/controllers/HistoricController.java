@@ -15,14 +15,14 @@ import com.teste.conversorgraus.services.HistoricService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(value = "/api/historic")
 @Api(value = "API REST histórico de converções")
-@CrossOrigin(origins="*")
 public class HistoricController {
 
 	@Autowired
-	HistoricService historicService;
+	private HistoricService historicService;
 
 	@GetMapping(produces = "application/json")
 	@ApiOperation(value = "Retorna uma lista de históricos de converções")

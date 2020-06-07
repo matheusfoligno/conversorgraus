@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="path-independent" xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="mathe (generated)" id="1591486752866-5">
+        <dropTable tableName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="mathe (generated)" id="1591486752866-1">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="convertedto" tableName="historic"/>
+    </changeSet>
+    <changeSet author="mathe (generated)" id="1591486752866-2">
+        <dropNotNullConstraint columnDataType="float" columnName="convertedvalue" tableName="historic"/>
+    </changeSet>
+    <changeSet author="mathe (generated)" id="1591486752866-3">
+        <dropNotNullConstraint columnDataType="datetime" columnName="date" tableName="historic"/>
+    </changeSet>
+    <changeSet author="mathe (generated)" id="1591486752866-4">
+        <dropNotNullConstraint columnDataType="float" columnName="valuetoconvert" tableName="historic"/>
+    </changeSet>
+</databaseChangeLog>

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
@@ -26,5 +27,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 		return new ResponseEntity<>(errorDetail, null, HttpStatus.BAD_REQUEST);
 	}
+	
+	@Override
+	protected ResponseEntity<Object> handleNoHandlerFoundException(
+			NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
+		ErrorDetail errorDetail = new ErrorDetail();
+		errorDetail.setTimeStamp(new Date().getTime());
+		errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
+		errorDetail.setTitle("Não foi possivel encontrar o endpoint.");
+		errorDetail.setDetail(ex.getMessage());
+		errorDetail.setDeveloperMessage(ex.getClass().getName());
+
+		return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
+	}
 }

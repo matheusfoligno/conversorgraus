@@ -14,7 +14,7 @@ import com.teste.conversorgraus.repositories.HistoricRepository;
 public class HistoricService {
 
 	@Autowired
-	HistoricRepository historicRepository;
+	private HistoricRepository historicRepository;
 
 	public void saveHistoric(ConvertValues convertValues, Float convertedValue) {
 		Historic historic = fillHistoric(convertValues, convertedValue);

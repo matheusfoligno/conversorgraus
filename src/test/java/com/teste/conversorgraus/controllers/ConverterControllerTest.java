@@ -35,14 +35,11 @@ public class ConverterControllerTest {
 	public void converterValidReturnStatus200AndCorrectConvertedValue() throws Exception {
 		String convertValues = "{\"valueToConvert\": \"5\", \"convertedTo\" : \"celsius\"}";
 		
-		String json = mockMvc.perform(MockMvcRequestBuilders.post("/api/converter")
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/converter")
 				.content(convertValues)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.convertedValue").value("-15.0"))
-				.andReturn().getResponse().getContentAsString();
-		
-		System.out.println(json);
+				.andExpect(MockMvcResultMatchers.jsonPath("$.convertedValue").value("-15.0"));
 	}
 	
 	@Test

@@ -19,10 +19,10 @@ import com.teste.conversorgraus.services.HistoricService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(value = "/api/converter")
 @Api(value = "API REST converção de graus")
-@CrossOrigin(origins="*")
 public class ConverterController {
 	
 	@Autowired
